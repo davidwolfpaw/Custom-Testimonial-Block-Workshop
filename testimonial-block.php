@@ -5,3 +5,10 @@
  * Version: 1.0.0
  * Author: david wolfpaw
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+// Define plugin version
+define( 'TESTIMONIAL_BLOCK_VERSION', '1.0.0' );
