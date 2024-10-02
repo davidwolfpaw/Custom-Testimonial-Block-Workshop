@@ -37,7 +37,12 @@
             );
         },
         save: function ({ attributes }) {
-            return createElement('p', null, 'Custom Testimonial Block'); // Placeholder text on frontend
+            // Step 3: Create Elements to Display Text on Frontend
+            const { testimonialText, authorName } = attributes;
+            return createElement('div', null,
+                createElement('blockquote', null, testimonialText),
+                createElement('p', { style: { fontWeight: 'bold' } }, authorName)
+            );
         }
     });
 })(window.wp.blocks, window.wp.element, window.wp.blockEditor, window.wp.components);
