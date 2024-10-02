@@ -1,0 +1,35 @@
+.custom-testimonial-block {
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid;
+    font-size: 1em;
+}
+
+.custom-testimonial-block img {
+    border-radius: 50%;
+    border: 3px solid;
+    background-color: #fff;
+}
+
+.custom-testimonial-block blockquote {
+    font-size: 1.5em;
+    padding: 50px;
+    font-style: italic;
+    position: relative;
+}
+
+.custom-testimonial-block blockquote::before {
+    content: '“';
+    font-family: sans-serif;
+    font-size: 4em;
+    line-height: 1;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+}
+
+.custom-testimonial-block p {
+    font-size: 1em;
+    font-weight: bold;
+}

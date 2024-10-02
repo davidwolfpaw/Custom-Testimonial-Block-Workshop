@@ -88,7 +88,7 @@
                         // Display Uploaded Image in Editor
                         authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
                         createElement('blockquote', null, testimonialText),
-                        createElement('p', { style: { fontWeight: 'bold' } }, authorName)
+                        createElement('p', null, authorName)
                     )
                 )
             );
@@ -105,7 +105,7 @@
                 },
                 authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
                 createElement('blockquote', null, testimonialText),
-                createElement('p', { style: { fontWeight: 'bold' } }, authorName)
+                createElement('p', null, authorName)
             );
         }
     });
