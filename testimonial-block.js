@@ -8,12 +8,18 @@
         title: 'Workshop Testimonial Block', // Block title
         icon: 'admin-comments', // Icon from WordPress dashicons
         category: 'common', // Category in the block inserter
+
+        // Step 12: Add alignment support
+        supports: {
+            align: ['left', 'center', 'right', 'wide', 'full'], // Supports alignment options
+        },
         attributes: {
             testimonialText: { type: 'string', default: '' }, // Testimonial text
             authorName: { type: 'string', default: '' }, // Author name
             authorImage: { type: 'string', default: '' }, // Author image URL
             backgroundColor: { type: 'string', default: '#ffffff' }, // Background color
             textColor: { type: 'string', default: '#000000' }, // Text color
+            blockAlignment: { type: 'string', default: 'none' }, // Block alignment
         },
         edit: function ({ attributes, setAttributes }) {
             const { testimonialText, authorName, authorImage, backgroundColor, textColor } = attributes;
@@ -27,8 +33,6 @@
                         // PanelBody for Testimonial Settings
                         createElement(PanelBody,
                             { title: 'Testimonial Settings' },
-
-                            // Step 11: Move Text Controls into Inspector Panel
                             // Add TextControl for Testimonial Text
                             createElement(TextControl, {
                                 label: 'Testimonial Text',
@@ -83,8 +87,6 @@
                         },
                         // Display Uploaded Image in Editor
                         authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
-
-                        // Step 11: Move Text Controls into Inspector Panel
                         createElement('blockquote', null, testimonialText),
                         createElement('p', { style: { fontWeight: 'bold' } }, authorName)
                     )
@@ -92,8 +94,6 @@
             );
         },
         save: function ({ attributes }) {
-
-            // Step 10: Display Color Changes on Frontend
             const { testimonialText, authorName, authorImage, backgroundColor, textColor } = attributes;
             return createElement('div',
                 {
