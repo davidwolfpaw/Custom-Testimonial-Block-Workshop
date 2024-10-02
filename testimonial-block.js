@@ -27,6 +27,22 @@
                         // PanelBody for Testimonial Settings
                         createElement(PanelBody,
                             { title: 'Testimonial Settings' },
+
+                            // Step 11: Move Text Controls into Inspector Panel
+                            // Add TextControl for Testimonial Text
+                            createElement(TextControl, {
+                                label: 'Testimonial Text',
+                                value: testimonialText,
+                                onChange: (value) => setAttributes({ testimonialText: value }),
+                                placeholder: 'Enter the testimonial text…'
+                            }),
+                            // Add TextControl for Author Name
+                            createElement(TextControl, {
+                                label: 'Author Name',
+                                value: authorName,
+                                onChange: (value) => setAttributes({ authorName: value }),
+                                placeholder: 'Enter the author’s name…'
+                            }),
                             // Media Upload for Author Image
                             createElement(MediaUploadCheck, {},
                                 createElement(MediaUpload, {
@@ -67,20 +83,10 @@
                         },
                         // Display Uploaded Image in Editor
                         authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
-                        // Add TextControl for Testimonial Text
-                        createElement(TextControl, {
-                            label: 'Testimonial Text',
-                            value: testimonialText,
-                            onChange: (value) => setAttributes({ testimonialText: value }),
-                            placeholder: 'Enter the testimonial text…'
-                        }),
-                        // Add TextControl for Author Name
-                        createElement(TextControl, {
-                            label: 'Author Name',
-                            value: authorName,
-                            onChange: (value) => setAttributes({ authorName: value }),
-                            placeholder: 'Enter the author’s name…'
-                        })
+
+                        // Step 11: Move Text Controls into Inspector Panel
+                        createElement('blockquote', null, testimonialText),
+                        createElement('p', { style: { fontWeight: 'bold' } }, authorName)
                     )
                 )
             );
