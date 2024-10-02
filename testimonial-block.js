@@ -18,7 +18,6 @@
         edit: function ({ attributes, setAttributes }) {
             const { testimonialText, authorName, authorImage, backgroundColor, textColor } = attributes;
 
-            // Step 7: Move Settings into Inspector Controls
             return (
                 createElement(Fragment,
                     null,
@@ -57,9 +56,17 @@
                         })
                     ),
 
-                    // Step 8: Make div to Display Testimonial in Editor
+                    // div to Display Testimonial in Editor
                     createElement('div',
-                        null,
+
+                        // Step 9: Display Color Changes in Editor
+                        {
+                            style: {
+                                color: textColor,
+                                backgroundColor: backgroundColor
+                            },
+                            className: 'custom-testimonial-block'
+                        },
                         // Display Uploaded Image in Editor
                         authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
                         // Add TextControl for Testimonial Text
