@@ -1,7 +1,9 @@
 (function (blocks, element, blockEditor, components) {
     const { registerBlockType } = blocks;
-    const { TextControl, Button } = components; // Import the Button Component
-    const { MediaUpload, MediaUploadCheck } = blockEditor; // Import the Media Upload Components
+    const { TextControl, Button } = components;
+
+    // Step 6: Import the Panel Color Settings
+    const { MediaUpload, MediaUploadCheck, PanelColorSettings } = blockEditor;
     const { createElement, Fragment } = element;
 
     registerBlockType('workshop/testimonial-block', {
@@ -13,9 +15,15 @@
             testimonialText: { type: 'string', default: '' }, // Testimonial text
             authorName: { type: 'string', default: '' }, // Author name
             authorImage: { type: 'string', default: '' }, // Author image URL
+
+            // Step 6: Add Attributes for Background and Text Colors
+            backgroundColor: { type: 'string', default: '#ffffff' }, // Background color
+            textColor: { type: 'string', default: '#000000' }, // Text color
         },
         edit: function ({ attributes, setAttributes }) {
-            const { testimonialText, authorName, authorImage } = attributes;
+
+            // Step 6: Add Attributes for Background and Text Colors
+            const { testimonialText, authorName, authorImage, backgroundColor, textColor } = attributes;
 
             return createElement(
                 Fragment,
@@ -45,13 +53,30 @@
                     value: authorName,
                     onChange: (value) => setAttributes({ authorName: value }),
                     placeholder: 'Enter the author’s name…'
+                }),
+
+                // Step 6: Panel for Color Settings
+                createElement(PanelColorSettings, {
+                    title: 'Color Settings',
+                    initialOpen: true,
+                    colorSettings: [
+                        {
+                            value: backgroundColor,
+                            onChange: (value) => setAttributes({ backgroundColor: value }),
+                            label: 'Background Color',
+                        },
+                        {
+                            value: textColor,
+                            onChange: (value) => setAttributes({ textColor: value }),
+                            label: 'Text Color',
+                        }
+                    ],
                 })
             );
         },
         save: function ({ attributes }) {
             const { testimonialText, authorName, authorImage } = attributes;
             return createElement('div', null,
-                // Step 5: Render Image on Frontend
                 authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
                 createElement('blockquote', null, testimonialText),
                 createElement('p', { style: { fontWeight: 'bold' } }, authorName)
