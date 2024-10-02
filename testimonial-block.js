@@ -58,8 +58,6 @@
 
                     // div to Display Testimonial in Editor
                     createElement('div',
-
-                        // Step 9: Display Color Changes in Editor
                         {
                             style: {
                                 color: textColor,
@@ -88,8 +86,17 @@
             );
         },
         save: function ({ attributes }) {
-            const { testimonialText, authorName, authorImage } = attributes;
-            return createElement('div', null,
+
+            // Step 10: Display Color Changes on Frontend
+            const { testimonialText, authorName, authorImage, backgroundColor, textColor } = attributes;
+            return createElement('div',
+                {
+                    style: {
+                        color: textColor,
+                        backgroundColor: backgroundColor
+                    },
+                    className: 'custom-testimonial-block'
+                },
                 authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
                 createElement('blockquote', null, testimonialText),
                 createElement('p', { style: { fontWeight: 'bold' } }, authorName)
