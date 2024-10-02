@@ -1,7 +1,5 @@
 (function (blocks, element, blockEditor, components) {
     const { registerBlockType } = blocks;
-
-    // Step 4: Add Button and Media Upload Components
     const { TextControl, Button } = components; // Import the Button Component
     const { MediaUpload, MediaUploadCheck } = blockEditor; // Import the Media Upload Components
     const { createElement, Fragment } = element;
@@ -14,20 +12,14 @@
         attributes: {
             testimonialText: { type: 'string', default: '' }, // Testimonial text
             authorName: { type: 'string', default: '' }, // Author name
-
-            // Step 4: Add Image URL Attribute
             authorImage: { type: 'string', default: '' }, // Author image URL
         },
         edit: function ({ attributes, setAttributes }) {
-
-            // Step 4: Add Image URL Attribute
             const { testimonialText, authorName, authorImage } = attributes;
 
             return createElement(
                 Fragment,
                 null,
-
-                // Step 4: Add Media Upload for Author Image
                 // Media Upload for Author Image
                 createElement(MediaUploadCheck, {},
                     createElement(MediaUpload, {
@@ -57,8 +49,10 @@
             );
         },
         save: function ({ attributes }) {
-            const { testimonialText, authorName } = attributes;
+            const { testimonialText, authorName, authorImage } = attributes;
             return createElement('div', null,
+                // Step 5: Render Image on Frontend
+                authorImage && createElement('img', { src: authorImage, alt: 'Author Image' }),
                 createElement('blockquote', null, testimonialText),
                 createElement('p', { style: { fontWeight: 'bold' } }, authorName)
             );
