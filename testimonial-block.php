@@ -25,6 +25,14 @@ function register_testimonial_block() {
 		true, // Is script in HTML Footer (optional)
 	);
 
+	// Register the block's styles
+	wp_register_style(
+		'testimonial-block-style', // Unique stylesheet handle
+		plugins_url( 'testimonial-block.css', __FILE__ ), // URL of where the stylesheet file exists
+		array( 'wp-edit-blocks' ), // Stylesheets that should load before this script
+		TESTIMONIAL_BLOCK_VERSION // Version of the plugin script (optional)
+	);
+
 	// Register the block type with the scripts and styles
 	register_block_type(
 		// Block namespace and name
@@ -32,6 +40,7 @@ function register_testimonial_block() {
 		// Array of arguments for the block
 		array(
 			'editor_script' => 'testimonial-block-script',
+			'style_handles' => array( 'testimonial-block-style' ),
 		)
 	);
 }
